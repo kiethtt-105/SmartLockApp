@@ -4,6 +4,13 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
     }
+    resolutionStrategy {
+        eachPlugin {
+            if (requested.id.id == "com.google.android.gms.oss-licenses-plugin") {
+                useModule("com.google.android.gms:oss-licenses-plugin:${requested.version}")
+            }
+        }
+    }
 }
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
@@ -14,9 +21,5 @@ dependencyResolutionManagement {
     }
 }
 
-plugins {
-    id("com.android.application") version "8.7.0" apply false
-    id("org.jetbrains.kotlin.android") version "2.0.20" apply false
-    id("com.google.android.gms.oss-licenses-plugin") version "1.3" apply false
-    id("com.android.feature") version "8.7.0" apply false
-}
+rootProject.name = "SmartLockApp"
+include(":app")
